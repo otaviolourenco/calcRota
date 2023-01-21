@@ -7,11 +7,11 @@
     <meta name="description" content="apenas um site teste para mapas">
     <link rel="stylesheet" href="style.css">
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNCOLadpkSUUpmJLe0TSB0jc9s69vSw6E"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNCOLadpkSUUpmJLe0TSB0jc9s69vSw6E&callback=meuMapa"></script>
 
     <title>Google Maps Library - Projecto</title>
 </head>
-<body onload="carregarMapa()">
+<body onload="meuMapa()">
     
     <div class="container">
         Partida: <input id="origem" type="text" value="">
@@ -28,8 +28,8 @@
         function carregarMapa() {
             mostrarDirecao = new google.maps.DirectionsRenderer();
 
-            const ponto = new google.maps.LatLng(38.72797333344735, -9.131174786717906);
-            const opcoes = {
+            var ponto = new google.maps.LatLng(38.72797333344735, -9.131174786717906);
+            var opcoes = {
                 zoom: 10,
                 center: ponto,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -67,6 +67,11 @@
                 });
             });
 
+        function meuMapa() {
+            carregarMapa();
+        }
+
     </script>
+
 </body>
 </html>
