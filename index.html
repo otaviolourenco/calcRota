@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNCOLadpkSUUpmJLe0TSB0jc9s69vSw6E&callback=myMap"></script>
+
+    <title>Google Maps Library - Projecto</title>
+</head>
+<body onload="carregarMapa()">
+    
+    <div class="container">
+        Partida: <input id="origem" type="text" value="">
+        <input type="button" id="localizar" value="Localização atual"><br>
+        <input type="button" value="Procurar" onclick="calcularRota()"><br>
+        <div id="mapa" style="position: relative; width: 50%; height: 500px;"></div>
+    </div>
+
+    <script>
+        let mapa;
+        let mostrarDirecao;
+        let servicoRota = new google.maps.DirectionsService();
+
+        function carregarMapa() {
+            mostrarDirecao = new google.maps.DirectionsRenderer();
+
+            const ponto = new google.maps.LatLng(38.72797333344735, -9.131174786717906);
+            const opcoes = {
+                zoom: 10,
+                center: ponto,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            
+            mapa = new google.maps.Map(document.getElementById("mapa"), opcoes);
+            mostrarDirecao.setMap(mapa);
+            mostrarDirecao.setPanel(document.getElementById("rota"));
+        }
+
+        function calcularRota() {
+            let origem = document.getElementById("origem").value;
+            let destino = new google.maps.LatLng(38.72797333344735, -9.131174786717906)
+            let opcoes = {
+                origin: origem,
+                destination: destino,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+
+            servicoRota.route(opcoes, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    mostrarDirecao.setDirections(response);
+                }
+            });
+        }
+
+        //localização atual do usuário
+        document.getElementById("localizar").addEventListener("click", function() {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                    document.getElementById("origem").value = latitude + ',' + longitude;
+
+                    calcularRota();
+                });
+            });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#mapa {
+    border: solid 5px rgb(80, 37, 255);
+    border-radius: 10px;
+}
