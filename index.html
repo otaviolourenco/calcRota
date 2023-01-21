@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="apenas um site teste para mapas">
     <link rel="stylesheet" href="style.css">
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNCOLadpkSUUpmJLe0TSB0jc9s69vSw6E&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNCOLadpkSUUpmJLe0TSB0jc9s69vSw6E"></script>
 
     <title>Google Maps Library - Projecto</title>
 </head>
@@ -14,8 +15,8 @@
     
     <div class="container">
         Partida: <input id="origem" type="text" value="">
-        <input type="button" id="localizar" value="Localização atual"><br>
         <input type="button" value="Procurar" onclick="calcularRota()"><br>
+        <input type="button" id="localizar" value="Localização atual"><br>
         <div id="mapa" style="position: relative; width: 90%; height: 30rem;"></div>
     </div>
 
